@@ -2,13 +2,13 @@ package Oving2;
 
 public class Rekursjon23 {
 
-	private static double RekursjonAvansert(double x, double n){
+	private static double RekursjonAvansert(double x, int n){
 		if (n == 0) return 1;
 		if ((n % 2) == 0) return RekursjonAvansert((x*x), (n / 2));
 		else return x*RekursjonAvansert((x*x), ((n-1) / 2));
 	}
 	
-	private static int YtelseRekursjonAvansert(double x, double n, int testrunder){
+	private static int YtelseRekursjonAvansert(double x, int n, int testrunder){
 		int runder = 0;
 		long start = System.currentTimeMillis();
 		long tidsbruk = 0;
@@ -25,7 +25,7 @@ public class Rekursjon23 {
 		return resultat;
 	}
 	
-	private static int YtelseMathPow(double x, double n, int testrunder){
+	private static int YtelseMathPow(double x, int n, int testrunder){
 		int runder = 0;
 		long start = System.currentTimeMillis();
 		long tidsbruk = 0;
@@ -44,8 +44,8 @@ public class Rekursjon23 {
 	
 	public static void main(String[] args){
 		double x = 1.01;
-		double n = 500;
-		int testrunder = 10000;
+		int n = 10000;
+		int testrunder = 100000;
 		System.out.println("Resultat: "+YtelseRekursjonAvansert(x, n, testrunder));
 		System.out.println("Resultat: "+YtelseMathPow(x, n, testrunder));
 	}
