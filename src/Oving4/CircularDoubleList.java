@@ -20,7 +20,7 @@ public class CircularDoubleList {
 		return size;
 	}
 	
-	public void insertAtStart(double value) {
+	public void insertAtStart(int value) {
 		Node temp = new Node(value, null, null);
 		if (start == null){
 			temp.setNextNode(temp);
@@ -37,7 +37,7 @@ public class CircularDoubleList {
 		size++;
 	}
 	
-	public void insertAtEnd(double value) {
+	public void insertAtEnd(int value) {
 		Node temp = new Node(value, null, null);
 		if (start == null){
 			temp.setNextNode(temp);
@@ -54,7 +54,7 @@ public class CircularDoubleList {
 		size++;
 	}
 	
-	public void insertAtPosition(double value, int position){
+	public void insertAtPosition(int value, int position){
 		if (position > size || position < 0) throw new IndexOutOfBoundsException();
 		Node a = new Node(value, null, null);
 		if (position == 1) insertAtStart(value);
@@ -105,48 +105,8 @@ public class CircularDoubleList {
 		}
 	}
 	
-	/*
-	public void removeNode(Node n){
-		Node temp = new Node(n.getElement(), )
-		if (n.getPreviousNode() != null){
-			n.getPreviousNode().getNextNode() = n.getNextNode();
-		} else {
-			start = n.getNextNode();
-		}
-		if (n.getNextNode() != null){
-			n.getNextNode().getPreviousNode() = 
-		}
-	}
-	*/
-	
 	public void execute(int interval){
-		Node temp = start.getPreviousNode();
-		Node current = null;
-		Node prevtemp = null;
-		int data = 0;
-		int x = interval;
-		int numofplp = size;
-		displayJosephus();
-		System.out.println("\n");
-		System.out.println(end.getElement()+ " høhø "+ end.getNextNode().getElement());
-		/*
-		while (numofplp != 2){
-			for (int i = 0; i < x; i++){
-				temp = temp.getNextNode();
-				//current = temp;
-				//prevtemp = current.getPreviousNode();
-				//if (temp.getNextNode() == start) temp = start;
-			}
-			data = (int)temp.getElement();
-			//temp = temp.getPreviousNode();
-			//removeNodeAtPosition(data);
-			System.out.println("Killed: "+(data));
-			//displayJosephus();
-			//System.out.println("\n");
-			numofplp--;
-		}
-		displayJosephus();
-		*/
+
 	}
 	
 	public void displayList(){

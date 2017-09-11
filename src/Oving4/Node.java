@@ -2,9 +2,9 @@ package Oving4;
 
 class Node {
 	
-	private int element;
-	private Node next;
-	private Node previous;
+	 int element;
+	 Node next;
+	 Node previous;
 	
 	/**
 	 * Constructor without parameters
@@ -15,6 +15,10 @@ class Node {
 		previous = null;
 	}
 	
+	public Node(int element){
+		this.element = element;
+	}
+	
 	/**
 	 * Constructor for circular single linked list
 	 * 
@@ -22,8 +26,8 @@ class Node {
 	 * @param n
 	 */
 	public Node(int e, Node n){
-		element = e;
-		next = n;
+		this.element = e;
+		this.next = n;
 	}
 	
 	/**

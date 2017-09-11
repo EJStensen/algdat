@@ -3,12 +3,7 @@ package Oving4;
 public class CircularList{
 
 	private Node head;
-	int size;
-	
-	public CircularList(){
-		head = null;
-		size = 0;
-	}
+	private int size;
 
 	public boolean isEmpty(){
 		return head == null;
@@ -18,111 +13,80 @@ public class CircularList{
 		return size;
 	}
 	
-	public Node getHead(){
-		return head;
-	}
-	
-	public void insertAtHead(int value){
-		head = new Node(value, head);
-		size++;
-	}
-	
-	public void insertAtTail(int value){
-		if (head != null){
-			Node temp = head;
-			while (temp.getNextNode() != null) temp = temp.getNextNode();
+	public void insertToList(int value){
+		Node temp = new Node(value);
+		if (head == null){
+			head = temp;
 		} else {
-			head = new Node(value, null);
+			Node tp = head;
+			while (tp.next != head) tp = tp.next;
+			tp.next = temp;
 		}
+		temp.next = head;
 		size++;
 	}
 	
-	public void insertAtPosition(int value, int position){
-		if (position < 0 || position > size) throw new IllegalArgumentException();
-		if (head == null) insertAtHead(value);
-		if (position == size) insertAtTail(value);
-	}
-	
-	public void removeNode(Node n){
-		if (head.getNextNode() == head){
-
-		}
-	}
-	
-	/*
-	public void removeNodeAtPosition(int position){
-		if (position < 0 || position > size) throw new IllegalArgumentException();
-		if (size == 1 && position == 1){
-			head = null;
-			tail = null;
-			size = 0;
-		}
-		if (position == 1){
-			head = head.getNextNode();
-			tail.setNextNode(head);
-			size--;
-		}
-		if (position == size){
-			Node a = head;
-			Node b = head;
-			while (a != tail){
-				b = a;
-				a = a.getNextNode();
-			}
-			tail = b;
-			tail.setNextNode(head);
-			size--;
-		}
-		Node temp = head;
-		position = position - 1;
-		for (int i = 1; i < size; i++){
-			if (i == position){
-				Node n = temp.getNextNode();
-				n = n.getNextNode();
-				temp.setNextNode(n);
+	public void deleteNode(Node n){
+		Node current = head;
+		Node prev = head;
+		int data = n.element;
+		while (current.element != data){
+			if (current.next == head){
 				break;
 			}
-			temp = temp.getNextNode();
+			prev = current;
+			current = current.next;
 		}
+		prev.next = current.next;
+		head = prev.next;
 		size--;
+		System.out.println("\nKilled: "+data);
 	}
-	*/
+	
+	private void deleteFirst(Node n){
+		Node current = head;
+		Node prev = head;
+		int data = n.element - 1;
+		while (current.element != data){
+			if (current.next == head){
+				break;
+			}
+			prev = current;
+			current = current.next;
+		}
+		prev.next = current.next;
+		size--;
+		System.out.println("Killed: "+data);
+	}
 
 	public void execute(int interval){
-		Node temp = head;
-		int data;
+		Node current = head;
+		Node temp = null;
+		boolean delFirst = true;
+		System.out.print("Original list: ");
 		displayList();
 		System.out.println("\n");
-		//displayJosephus();
-		 
+		while(getSize() >= 2){
+			for (int i = 0; i < interval; i++){
+				temp = current;
+				current = current.next;
+			}
+			if (delFirst == true) deleteFirst(current);
+			else deleteNode(current);
+			current = temp;
+			System.out.println("\n");
+			displayList();
+			delFirst = false;
+		}
 	}
 	
 	public void displayList(){
 		Node temp = head;
-		if (size == 0) System.out.println("List is empty");
-		if (head.getNextNode() == head) System.out.println(head.getElement()+" -> "+temp.getElement());
-		System.out.print(head.getElement()+" -> ");
-		temp = head.getNextNode();
-		while(temp.getNextNode() != head){
+		if (size == 0) isEmpty();
+		for (int i = 0; i < size-1; i++){
 			System.out.print(temp.getElement()+" -> ");
-			temp = temp.getNextNode();
+			temp = temp.next;
 		}
-		System.out.print(temp.getElement()+" -> ");
-		temp = temp.getNextNode();
-		System.out.print(temp.getElement()+"\n");
+		System.out.print(temp.element);
 	}
-	/*
-	public void displayJosephus(){
-		Node temp = head;
-		if (size == 0) System.out.println("List is empty");
-		if (head.getNextNode() == head) System.out.println(head.getElement()+" -> "+temp.getElement());
-		System.out.print(head.getElement()+" ");
-		temp = head.getNextNode();
-		while(temp.getNextNode() != head){
-			System.out.print(temp.getElement()+" ");
-			temp = temp.getNextNode();
-		}
-		System.out.print(temp.getElement());
-	}
-	*/
 }

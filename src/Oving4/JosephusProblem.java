@@ -5,13 +5,9 @@ public class JosephusProblem {
 		CircularList list = new CircularList();
 		int numberofpeople = 10;
 		int interval = 4;
-		for (int i = 0; i < numberofpeople; i++){
-			list.insertAtTail(i);
+		for (int i = 1; i < numberofpeople+1; i++){
+			list.insertToList(i);
 		}
-		
-		//list.displayList();
 		list.execute(interval);
-		
-		//list.execute(interval);
 	}
 }
