@@ -2,10 +2,13 @@ package Oving4;
 
 class Node {
 	
-	private double element;
+	private int element;
 	private Node next;
 	private Node previous;
 	
+	/**
+	 * Constructor without parameters
+	 */
 	public Node() {
 		element = 0;
 		next = null;
@@ -18,7 +21,7 @@ class Node {
 	 * @param e
 	 * @param n
 	 */
-	public Node(double e, Node n){
+	public Node(int e, Node n){
 		element = e;
 		next = n;
 	}
@@ -31,13 +34,13 @@ class Node {
 	 * @param p
 	 */
 	
-	public Node(double e, Node n, Node p) {
+	public Node(int e, Node n, Node p) {
 		element = e;
 		next = n;
 		previous = p;
 	}
 	
-	public double getElement() {
+	public int getElement() {
 		return element;
 	}
 	
@@ -49,7 +52,7 @@ class Node {
 		return previous;
 	}
 	
-	public void setElement(double e) {
+	public void setElement(int e) {
 		element = e;
 	}
 	

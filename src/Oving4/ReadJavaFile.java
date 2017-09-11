@@ -10,11 +10,11 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ReadJavaFile {
-	
-	public static String getFilePath(){
+
+	private static String getFilePath(){
 		JFileChooser jc = new JFileChooser();
 		jc.setAcceptAllFileFilterUsed(false);
-		jc.addChoosableFileFilter(new FileNameExtensionFilter("java files", "java"));
+		jc.addChoosableFileFilter(new FileNameExtensionFilter("java", "java"));
 		String file_path = null;
 		if (jc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
 			File file = jc.getSelectedFile();
@@ -24,19 +24,35 @@ public class ReadJavaFile {
 		}
 		return file_path;
 	}
-	
-	public static void main(String[] args) throws FileNotFoundException{
-		String filepath = getFilePath();
-		BufferedReader reader = null;
+
+	public static Scanner getScannerObject(){
+		Scanner sc = null;
 		try {
-			reader = new BufferedReader(new FileReader(filepath));
+			sc = new Scanner(new BufferedReader(new FileReader(getFilePath())));
 		} catch (FileNotFoundException e){
-			System.out.println("File not found");
+			return null;
 		}
-		Scanner sc = new Scanner(reader);
-		while(sc.hasNext()){
-			System.out.println(sc.nextLine());
+		return sc;
+	}
+
+	public static void main(String[] args) throws FileNotFoundException{
+		Scanner sc = getScannerObject();
+		Stack stack = new Stack(500);
+		if (sc == null) System.out.println("Could not get file path");
+		else{
+			while (sc.hasNext()){
+				String line = sc.nextLine();
+				if (line.contains("{")) stack.push('{');
+				if (line.contains("}")) stack.push('}');
+				if (line.contains("(")) stack.push('(');
+				if (line.contains(")")) stack.push(')');
+				if (line.contains("[")) stack.push('[');
+				if (line.contains("]")) stack.push(']');
+			}
+			sc.close();
 		}
-		sc.close();
+		while (!stack.isEmpty()){
+			System.out.print(stack.pop());
+		}
 	}
 }

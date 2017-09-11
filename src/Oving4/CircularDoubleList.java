@@ -57,9 +57,8 @@ public class CircularDoubleList {
 	public void insertAtPosition(double value, int position){
 		if (position > size || position < 0) throw new IndexOutOfBoundsException();
 		Node a = new Node(value, null, null);
-		if (position == 1){
-			insertAtStart(value);
-		}
+		if (position == 1) insertAtStart(value);
+		if (position == size) insertAtEnd(value);
 		Node b = start;
 		for (int i = 2; i < size; i++){
 			if (i == position){
@@ -106,6 +105,50 @@ public class CircularDoubleList {
 		}
 	}
 	
+	/*
+	public void removeNode(Node n){
+		Node temp = new Node(n.getElement(), )
+		if (n.getPreviousNode() != null){
+			n.getPreviousNode().getNextNode() = n.getNextNode();
+		} else {
+			start = n.getNextNode();
+		}
+		if (n.getNextNode() != null){
+			n.getNextNode().getPreviousNode() = 
+		}
+	}
+	*/
+	
+	public void execute(int interval){
+		Node temp = start.getPreviousNode();
+		Node current = null;
+		Node prevtemp = null;
+		int data = 0;
+		int x = interval;
+		int numofplp = size;
+		displayJosephus();
+		System.out.println("\n");
+		System.out.println(end.getElement()+ " høhø "+ end.getNextNode().getElement());
+		/*
+		while (numofplp != 2){
+			for (int i = 0; i < x; i++){
+				temp = temp.getNextNode();
+				//current = temp;
+				//prevtemp = current.getPreviousNode();
+				//if (temp.getNextNode() == start) temp = start;
+			}
+			data = (int)temp.getElement();
+			//temp = temp.getPreviousNode();
+			//removeNodeAtPosition(data);
+			System.out.println("Killed: "+(data));
+			//displayJosephus();
+			//System.out.println("\n");
+			numofplp--;
+		}
+		displayJosephus();
+		*/
+	}
+	
 	public void displayList(){
 		Node temp = start;
 		if (size == 0) System.out.println("List is empty");
@@ -119,5 +162,18 @@ public class CircularDoubleList {
 		System.out.print(temp.getElement()+" <-> ");
 		temp = temp.getNextNode();
 		System.out.print(temp.getElement()+"\n");
+	}
+	
+	public void displayJosephus(){
+		Node temp = start;
+		if (size == 0) System.out.println("List is empty");
+		if (start.getNextNode() == start) System.out.println(start.getElement()+" -> "+temp.getElement());
+		System.out.print(start.getElement()+" ");
+		temp = start.getNextNode();
+		while(temp.getNextNode() != start){
+			System.out.print(temp.getElement()+" ");
+			temp = temp.getNextNode();
+		}
+		System.out.print(temp.getElement());
 	}
 }
