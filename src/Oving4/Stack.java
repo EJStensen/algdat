@@ -1,11 +1,11 @@
 package Oving4;
 
 class Stack {
-	private Object[] array;
+	private int[] array;
 	private int number = 0;
 	
 	public Stack(int length){
-		array = new Object[length];
+		array = new int[length];
 	}
 	
 	public boolean isEmpty(){
@@ -16,17 +16,17 @@ class Stack {
 		return number == array.length;
 	}
 	
-	public void push(Object e){
-		if (!isFull()) array[number++] = e;
+	public void push(int check){
+		if (!isFull()) array[number++] = check;
 	}
 	
-	public Object pop(){
+	public int pop(){
 		if (!isEmpty()) return array[--number];
-		else return null;
+		else return 0;
 	}
 	
-	public Object checkStack(){
+	public int checkStack(){
 		if(!isEmpty()) return array[number-1];
-		else return null;
+		else return 0;
 	}
 }
