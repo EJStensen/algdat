@@ -40,7 +40,7 @@ public class CircularList{
 		prev.next = current.next;
 		head = prev.next;
 		size--;
-		System.out.println("\nKilled: "+data);
+		//System.out.println("\nKilled: "+data);
 	}
 	
 	private void deleteFirst(Node n){
@@ -56,7 +56,7 @@ public class CircularList{
 		}
 		prev.next = current.next;
 		size--;
-		System.out.println("Killed: "+data);
+		//System.out.println("Killed: "+data);
 	}
 
 	public void execute(int interval){
@@ -65,7 +65,7 @@ public class CircularList{
 		boolean delFirst = true;
 		System.out.print("Original list: ");
 		displayList();
-		System.out.println("\n");
+		//System.out.println("\n");
 		while(getSize() >= 2){
 			for (int i = 0; i < interval; i++){
 				temp = current;
