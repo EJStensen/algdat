@@ -2,12 +2,24 @@ package Oving5;
 
 public class HashArray {
 
-	int key;
-	Names value;
+	Names key;
+	int value;
 	HashArray next;
+	
+	public HashArray(){
+		
+	}
 
-	public HashArray(int k, Names v){
+	public HashArray(Names k, int v){
 		key = k;
 		value = v;
+	}
+	
+	public int getValue(){
+		return value;
+	}
+	
+	public Names getKey(){
+		return key;
 	}
 }
