@@ -48,22 +48,22 @@ public class Names {
 	}
 	
 	public int getHashCode(){
-		return h1();
+		return hash1();
 	}
 	
-	private int h1(){
+	private int hash1(){
 		if (name[1] == null){
-			return h2(this.name[0].charAt(0))+h2(this.name[3].charAt(0));
+			return h1(this.name[0].charAt(0))+h1(this.name[3].charAt(0));
 		}
 		if (name[1] != null && name[2] == null){
-			return (h2(this.name[0].charAt(0))+h2(this.name[1].charAt(0))+h2(this.name[3].charAt(0)));
+			return (h1(this.name[0].charAt(0))+h1(this.name[1].charAt(0))+h1(this.name[3].charAt(0)));
 		}
 		else{
-			return (h2(this.name[0].charAt(0))+h2(this.name[1].charAt(0))+h2(this.name[2].charAt(0))+h2(this.name[3].charAt(0)));
+			return (h1(this.name[0].charAt(0))+h1(this.name[1].charAt(0))+h1(this.name[2].charAt(0))+h1(this.name[3].charAt(0)));
 		}
 	}
 	
-	private int h2(int key){
+	private int h1(int key){
 		return key % 43;
 	}
 	

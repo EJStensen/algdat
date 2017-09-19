@@ -42,6 +42,13 @@ public class ReadFromFile {
 		}
 		sc.close();
 		System.out.println("Number of collisions: "+collisions);
+		int elements = 0;
+		for (int i = 0; i < size; i++){
+			if (table[i] != null){
+				elements++;
+			}
+		}
+		System.out.println("Load factor: "+((double)(elements)/(double)(size)));
 		return true;
 	}
 	
@@ -68,16 +75,16 @@ public class ReadFromFile {
 		}
 	}
 	
-	public String get(Names key){
-		int h1 = key.getHashCode();
-		HashArray x = table[h1];
+	public boolean get(Names key){
+		//int h1 = key.getHashCode();
+		HashArray x = table[0];
 		while (x != null){
 			if (x.getKey().equals(key)){
-				System.out.println(x.getValue());
+				return true;
 			}
 			x = x.next;
 		}
-		return null;
+		return false;
 	}
 	
 	public void display(){
