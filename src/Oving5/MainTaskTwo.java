@@ -1,8 +1,5 @@
 package Oving5;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MainTaskTwo {
 	
 	private final static int size = 5000000;
@@ -26,7 +23,7 @@ public class MainTaskTwo {
 		long start = System.currentTimeMillis();
 		h.benchmarkHashInt(input);
 		long stop = System.currentTimeMillis();
-		System.out.println("Time used: "+(stop-start)+" ms");
+		System.out.println("Time used: "+(stop-start)+" ms (custom)");
 	}
 	
 	public static void benchmarkHashMap(int[] input){
@@ -34,7 +31,7 @@ public class MainTaskTwo {
 		long start = System.currentTimeMillis();
 		h.benchmarkHashInt(input);
 		long stop = System.currentTimeMillis();
-		System.out.println("Time used: "+(stop-start)+" ms");
+		System.out.println("Time used: "+(stop-start)+" ms (hashmap)");
 	}
 	
 	public static void main(String[] args){
