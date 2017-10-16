@@ -8,6 +8,26 @@ public class Graph {
 	int Nodes, Edges;
 	Node[] node;
 
+	class Predecessor {
+		int distance;
+		int namep;
+		Node predecessor;
+		static final int unlimited = 1000000000;
+		
+		public int FindDistance() {
+			return distance;
+		}
+		
+		public Node FindPredecessor() {
+			return predecessor;
+		}
+		
+		public Predecessor() {
+			distance = unlimited;
+		}
+	}
+	
+	
 	/**
 	 * 
 	 * Read graph from file
@@ -16,36 +36,43 @@ public class Graph {
 	 * @throws IOException
 	 */
 	public void new_undirectedGraph(BufferedReader br) throws IOException {
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		Nodes = Integer.parseInt(st.nextToken());
-		node = new Node[Nodes];
-		for (int i = 0; i < Nodes; i++) {
-			node[i] = new Node(i);
-		}
-		Edges = Integer.parseInt(st.nextToken());
-		for (int i = 0; i < Edges; i++) {
+		StringTokenizer st = null;
+		try {
 			st = new StringTokenizer(br.readLine());
-			int from = Integer.parseInt(st.nextToken());
-			int to = Integer.parseInt(st.nextToken());
-			Edge e = new Edge(node[to], node[from].edge1);
-			node[from].edge1 = e;
+			Nodes = Integer.parseInt(st.nextToken());
+			node = new Node[Nodes];
+			for (int i = 0; i < Nodes; i++) {
+				node[i] = new Node();
+				node[i].name = i;
+			}
+			Edges = Integer.parseInt(st.nextToken());
+			for (int i = 0; i < Edges; i++) {
+				st = new StringTokenizer(br.readLine());
+				int from = Integer.parseInt(st.nextToken());
+				int to = Integer.parseInt(st.nextToken());
+				Edge e = new Edge(node[to], node[from].edge1);
+				node[from].edge1 = e;
+			}
+			br.close();
+		} catch (IOException f) {
+			f.printStackTrace();
 		}
-		br.close();
 	}
 	
 	/**
 	 * 
 	 * @param s - Start node
 	 */
-	
 	public void bfs(Node s) {
 		initPredecessor(s);
 		Queue queue = new Queue(Nodes - 1);
 		queue.addToQueue(s);
 		while(!queue.isEmpty()) {
 			Node n = (Node)queue.nextInQueue();
+			System.out.println(n.name);
 			for (Edge e = n.edge1; e != null; e = e.next) {
 				Predecessor p = (Predecessor)e.to.d;
+				System.out.println(p.distance);
 				if (p.distance == Predecessor.unlimited) {
 					p.distance = ((Predecessor)n.d).distance + 1;
 					p.predecessor = n;
@@ -53,7 +80,6 @@ public class Graph {
 				}
 			}
 		}
-		System.out.println();
 	}
 	
 	private void initPredecessor(Node s) {
@@ -70,6 +96,7 @@ public class Graph {
 		}
 		for (int i = Nodes; i-->0;) {
 			l = df_topo(node[i], l);
+			System.out.println(l);
 		}
 		return l;
 	}
@@ -81,6 +108,13 @@ public class Graph {
 		for (Edge e = n.edge1; e != null; e = e.next) {
 			l = df_topo(e.to, l);
 		}
+		ts.next = l;
 		return n;
+	}
+	
+	public void testskit() {
+		for (int i = 0; i < node.length; i++) {
+			System.out.println();
+		}
 	}
 }

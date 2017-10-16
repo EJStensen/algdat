@@ -18,7 +18,9 @@ public class Main {
 		}
 		if (br != null) {
 			g.new_undirectedGraph(br);
-			g.bfs(g.node[0]);
+			//g.testskit();
+			//g.bfs(g.node[0]);
+			System.out.println(g.TopologicalSort().edge1.to.name);
 		} else {
 			System.out.println("kek");
 		}
