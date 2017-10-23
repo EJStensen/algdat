@@ -1,6 +1,6 @@
 package Oving4;
 
-class Stack {
+public class Stack {
 	private int[] array;
 	private int number = 0;
 	
