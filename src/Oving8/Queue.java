@@ -1,4 +1,4 @@
-package Oving7;
+package Oving8;
 
 public class Queue {
 
@@ -9,10 +9,6 @@ public class Queue {
 	
 	public Queue(int size) {
 		array = new Object[size];
-	}
-	
-	public int getSize() {
-		return number;
 	}
 	
 	public boolean isEmpty() {

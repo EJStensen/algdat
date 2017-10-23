@@ -4,11 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.StringTokenizer;
-import Oving4.Stack;
 
 public class Graph {
 	int NumberOfNodes, Edges;
@@ -16,7 +12,6 @@ public class Graph {
 
 	class Predecessor {
 		int distance;
-		int prevnode;
 		Node predecessor;
 		static final int unlimited = 1000000000;
 		
@@ -90,6 +85,7 @@ public class Graph {
 					queue.addToQueue(e.to);
 					pre += p.predecessor.name+" ";
 					dist += p.distance+" ";
+					//System.out.print(queue.getSize()+" ");
 				}
 			}
 		}
@@ -104,24 +100,37 @@ public class Graph {
 		((Predecessor)s.d).distance = 0;
 	}
 	
-	public void TopologicalSort() {
-		Node l = new Node();
+	public void showTopological() {
+		System.out.print("Topological: ");
+		Node temp = TopologicalSort();
+		while (temp != null) {
+			System.out.print(temp.name+" ");
+			temp = ((Topological)temp.d).next;
+		}
+		TopologicalSort();
+	}
+	
+	public Node TopologicalSort() {
+		Node l = null;
 		for (int i = NumberOfNodes; i-->0;) {
 			node[i].d = new Topological();
 		}
 		for (int i = NumberOfNodes; i-->0;) {
 			l = dfs_topological(node[i], l);
+			//System.out.print(l.name+" ");
 		}
-		System.out.print(l.edge1.to.name);
+		return l;
 	}
 	
 	private Node dfs_topological(Node n, Node l) {
 		Topological ts = (Topological)n.d;
-		l.name = n.name;
 		if (ts.found) return l;
 		ts.found = true;
-		for (Edge e = n.edge1; e != null; e = e.next) l = dfs_topological(e.to, l);
+		for (Edge e = n.edge1; e != null; e = e.next) {
+			l = dfs_topological(e.to, l);
+		}
+		//System.out.print(n.name+" ");
 		ts.next = l;
-		return l;
+		return n;
 	}
 }

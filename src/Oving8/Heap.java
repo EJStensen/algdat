@@ -1,9 +1,11 @@
 package Oving8;
 
 public class Heap {
-	int length;
-	int node[];
+	private int length;
+	private int maxsize;
+	private Node node[];
 	
+	/*
 	int over(int position) {
 		return (position - 1) >> 1;
 	}
@@ -15,7 +17,16 @@ public class Heap {
 	int right(int position) {
 		return (position + 1) << 1;
 	}
+	*/
 	
+	public Heap(Node[] n) {
+		node = n;
+		maxsize = n.length;
+		length = 0;
+	}
+	
+	public void insert()
+	/*
 	public void fix_heap(int position) {
 		int m = left(position);
 		if (m < length){
@@ -70,4 +81,5 @@ public class Heap {
 		}
 		length = l;
 	}
+	*/
 }
