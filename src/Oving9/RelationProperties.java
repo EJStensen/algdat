@@ -41,14 +41,28 @@ class RelationProperties {
 
 	public static boolean isTransitive(char[][] relation, char[] set) {
 		boolean test = true;
+		boolean breaksecondloop = false;
 		for (int i = 0; i < relation.length; i++) {
-			if ((relation[i][0] == relation[i][1]) || ) {
-				
-			}
-			for (int j = 0; j < relation.length; j++) {
-				for (int k = 0; k < relation.length; k++) {
-					if (relation[i][0] == relation[i][1]) {
+			char x = relation[i][0];
+			char y = relation[i][1];
+			breaksecondloop = false;
+			
+			for (int j = i+1; j < relation.length; j++) {
+				if (!breaksecondloop) {
+					if (relation[j][0] == y) {
+						char z = relation[j][1];
 						
+						for (int k = 0; k < relation.length; k++) {
+							if ((relation[i][0] == x) && relation[k][1] == z) {
+								test = true;
+								breaksecondloop = true;
+								break;
+							} else {
+								test = false;
+							}
+						}
+					} else {
+						test = false;
 					}
 				}
 			}
@@ -58,7 +72,16 @@ class RelationProperties {
 	}
 
 	public static boolean isAntiSymmetric(char[][] relation, char[] set) {
-		return true;
+		boolean test = true;
+		for (int i = 0; i < relation.length; i++) {
+			if (test) {
+				for (int j = 0; j < relation.length; j++) {
+					
+				}
+			}
+		}
+		if (test) return true;
+		else return false;
 	}
 
 	public static boolean isEquivalenceRelation(char[][] relation, char[] set) {
@@ -66,7 +89,7 @@ class RelationProperties {
 	}
 
 	public static boolean isPartialOrder(char[][] relation, char[] set) {
-		return false;
+		return (isReflexive(relation, set) && isAntiSymmetric(relation, set) && isTransitive(relation, set));
 	}
 
 	public static void main(String[] args) {
@@ -80,7 +103,6 @@ class RelationProperties {
 		System.out.println("Rel2 is reflexive: " + isReflexive(rel2, setA));
 		System.out.println("Rel1 is symmetric: " + isSymmetric(rel1, setA));
 		System.out.println("Rel2 is symmetric: " + isSymmetric(rel2, setA));
-		/*
 		System.out.println("Rel1 is transitive: " + isTransitive(rel1, setA));
 		System.out.println("Rel2 is transitive: " + isTransitive(rel2, setA));
 		System.out.println("Rel1 is antisymmetric: " + isAntiSymmetric(rel1, setA));
@@ -96,7 +118,7 @@ class RelationProperties {
 		 * Rel1 is symmetric: true 
 		 * Rel2 is symmetric: false 
 		 * Rel1 is transitive: true
-		 * Rel2 is transitive: true 
+		 * Rel2 is transitive: false
 		 * Rel1 is antisymmetric: false 
 		 * Rel2 is antisymmetric: true
 		 * Rel1 is an equivalence relation: true 
