@@ -72,16 +72,23 @@ class RelationProperties {
 	}
 
 	public static boolean isAntiSymmetric(char[][] relation, char[] set) {
-		boolean test = true;
+		boolean test = false;
 		for (int i = 0; i < relation.length; i++) {
-			if (test) {
-				for (int j = 0; j < relation.length; j++) {
-					
+			char x = relation[i][0];
+			char y = relation[i][1];
+			if (!test) {
+				for (int j = i+1; j < relation.length; j++) {
+					if ((relation[j][0] == y) && (relation[j][1] == x)) {
+						test = true;
+						break;
+					}
 				}
+			} else {
+				break;
 			}
 		}
-		if (test) return true;
-		else return false;
+		if (test) return false;
+		else return true;
 	}
 
 	public static boolean isEquivalenceRelation(char[][] relation, char[] set) {
