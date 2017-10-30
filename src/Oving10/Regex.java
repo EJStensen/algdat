@@ -13,7 +13,7 @@ public class Regex {
 	
 	public static void main(String[] args) {
 		//regex: Any character* (digits)* Any character*
-		String stringOne = "aaa1aaa", regexOne = ".*\\d*.*";
+		String stringOne = "aaa1aaa", regexOne = ".*\\d.*";
 		
 		//regex: two digits / two digits / four digits
 		String stringTwo = "14/05/2007", regexTwo = "\\d{2}/\\d{2}/\\d{4}";
@@ -22,7 +22,7 @@ public class Regex {
 		String stringThree = "abcdefghij", regexThree = ".{10,}";
 		
 		//regex: Any character* (Non-character)* Any character*
-		String stringFour = "aaa/aaa", regexFour = ".*\\W.*";
+		String stringFour = "aaa/aaa", regexFour = "\\w*\\W\\w*";
 
 		System.out.println(regextest(regexOne, stringOne));
 		System.out.println(regextest(regexTwo, stringTwo));
