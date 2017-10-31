@@ -12,8 +12,8 @@ public class Regex {
 	}
 	
 	public static void main(String[] args) {
-		//regex: Any character* (digits)* Any character*
-		String stringOne = "aaa1aaa", regexOne = ".*\\d.*";
+		//regex: (character* (digit) character*)*
+		String stringOne = "aaa1aaa", regexOne = "([a-zA-Z]*\\d[a-zA-Z]*)*";
 		
 		//regex: two digits / two digits / four digits
 		String stringTwo = "14/05/2007", regexTwo = "\\d{2}/\\d{2}/\\d{4}";
@@ -21,8 +21,8 @@ public class Regex {
 		//regex: any character atleast ten times
 		String stringThree = "abcdefghij", regexThree = ".{10,}";
 		
-		//regex: Any character* (Non-character)* Any character*
-		String stringFour = "aaa/aaa", regexFour = "\\w*\\W\\w*";
+		//regex: (character* (digit | non-character) character*)*
+		String stringFour = "aaaa5aasdasd", regexFour = "([a-zA-Z]*(\\d|\\W)[a-zA-Z]*)*";
 
 		System.out.println(regextest(regexOne, stringOne));
 		System.out.println(regextest(regexTwo, stringTwo));
